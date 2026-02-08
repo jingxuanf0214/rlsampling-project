@@ -384,50 +384,46 @@
           <li><strong>OOD-Others:</strong> other subsets aggregated</li>
         </ul>
 
-        <section>
-          <h3>Downstream Utility: Best-of-<em>N</em> Selection</h3>
+        <h4 class="title is-5">Downstream Utility: Best-of-<em>N</em> Selection</h4>
         
-          <p>
-            <strong>Tasks.</strong>
-            ID: MATH500, GSM8K. OOD-Safety: Toxigen, IFEval.
-          </p>
+        <p>
+          <strong>Tasks.</strong>
+          ID: MATH500, GSM8K. OOD-Safety: Toxigen, IFEval.
+        </p>
+      
+        <p>
+          <strong>Protocol.</strong>
+          We evaluate two trained reward models (<code>FineMath-RM-Llama-3.2-3B</code> and <code>FineMath-RM-Qwen-2.5-7B</code>)
+          using best-of-<em>N</em>: for each input, we sample <em>N</em> candidate solutions from an actor, score each candidate
+          with the RM, and evaluate the highest-scoring selection. We sweep
+          <em>N</em> &isin; {1, 2, 4, 8, 16, 32} using three actors:
+          <code>Llama-3.2-1B-Instruct</code>, <code>Llama-3.2-3B-Instruct</code>, and <code>Llama-3.1-8B-Instruct</code>.
+        </p>
+      
+        <p>
+          <strong>Metric.</strong>
+          Accuracy as a function of <em>N</em>; we summarize with <strong>MAP</strong>, the maximum accuracy achieved along the
+          best-of-<em>N</em> curve.
+        </p>
+
+        <h4 class="title is-5">Downstream Utility: Policy Optimization</h4>
         
-          <p>
-            <strong>Protocol.</strong>
-            We evaluate two trained reward models (<code>FineMath-RM-Llama-3.2-3B</code> and <code>FineMath-RM-Qwen-2.5-7B</code>)
-            using best-of-<em>N</em>: for each input, we sample <em>N</em> candidate solutions from an actor, score each candidate
-            with the RM, and evaluate the highest-scoring selection. We sweep
-            <em>N</em> &isin; {1, 2, 4, 8, 16, 32} using three actors:
-            <code>Llama-3.2-1B-Instruct</code>, <code>Llama-3.2-3B-Instruct</code>, and <code>Llama-3.1-8B-Instruct</code>.
-          </p>
-        
-          <p>
-            <strong>Metric.</strong>
-            Accuracy as a function of <em>N</em>; we summarize with <strong>MAP</strong>, the maximum accuracy achieved along the
-            best-of-<em>N</em> curve.
-          </p>
-        </section>
-        <br/>
-        <section>
-          <h3>Downstream Utility: Policy Optimization</h3>
-        
-          <p>
-            <strong>Tasks.</strong>
-            To assess how well the RM serves as a learning signal for <em>actor training</em>, we train actors on the MATH and GSM8K
-  training splits and evaluate generalization on the corresponding test splits.
-          </p>
-        
-          <p>
-            <strong>Protocol.</strong>
-            We train actors with GRPO using <code>FineMath-RM-Qwen-2.5-7B</code> to provide the reward signal. We generate rollouts with
-            <code>Llama-3.2-3B-Instruct</code> and <code>Llama-3.1-8B-Instruct</code> actors under a fixed epoch budget.
-          </p>
-        
-          <p>
-            <strong>Metric.</strong>
-            <strong>mean@1</strong> accuracy on the corresponding test sets.
-          </p>
-        </section>
+        <p>
+          <strong>Tasks.</strong>
+          To assess how well the RM serves as a learning signal for <em>actor training</em>, we train actors on the MATH and GSM8K
+          training splits and evaluate generalization on the corresponding test splits.
+        </p>
+      
+        <p>
+          <strong>Protocol.</strong>
+          We train actors with GRPO using <code>FineMath-RM-Qwen-2.5-7B</code> to provide the reward signal. We generate rollouts with
+          <code>Llama-3.2-3B-Instruct</code> and <code>Llama-3.1-8B-Instruct</code> actors under a fixed epoch budget.
+        </p>
+      
+        <p>
+          <strong>Metric.</strong>
+          <strong>mean@1</strong> accuracy on the corresponding test sets.
+        </p>
         
       <hr/>
 
