@@ -326,8 +326,12 @@ body {
 }
 
 /* Content Improvements */
+.content {
+  font-size: 1.2rem;
+}
+
 .content.has-text-justified {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   line-height: 1.8;
   color: var(--text-secondary);
 }
@@ -646,8 +650,12 @@ code {
     padding: 1rem;
   }
   
+  .content {
+    font-size: 1.1rem;
+  }
+  
   .content.has-text-justified {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 }
 
